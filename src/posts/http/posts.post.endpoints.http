@@ -1,0 +1,20 @@
+POST http://localhost:3000/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE0LCJlbWFpbCI6InN1c2FuZG9lQGV4YW1wbGUuY29tIiwiaWF0IjoxNzM3NzE2MTYzLCJleHAiOjE3Mzc3MTk3NjMsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.HbJXPx2VOCVz5vWkX9MXK4S4L3oNQ4jv0YhziOt4yQU
+
+{
+  "title": "What's new with NestJs Typescript",
+  "postType": "post",
+  "slug": "new-with-typescript-2",
+  "status": "draft",
+  "content": "test content",
+  "schema": "{\r\n \"@context\": \"https:\/\/schema.org\",\r\n \"@type\": \"Person\"\r\n }",
+  "featuredImageUrl": "http://localhost.com/images/image1.jpg",
+  "publishOn": "2024-03-16T07:46:32+0000",
+  "tags": ["nestjs", "typescript"],
+  "metaOptions" : {
+    "metaValue": "{ \"sidebarEnabled\": true, \"footerActive\": false }"
+    },
+  "authorId": 1,
+  "tags": [3,2]
+}
