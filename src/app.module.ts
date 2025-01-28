@@ -18,6 +18,7 @@ import databaseConfig from './config/database.config';
 import environmentValidation from './config/environment.validation';
 import jwtConfig from './auth/config/jwt.config';
 import { DataResponseInterceptor } from './common/interceptors/data-response/data-response.interceptor';
+import { UploadsModule } from './uploads/uploads.module';
 
 @Module({
   imports: [
@@ -52,6 +53,7 @@ import { DataResponseInterceptor } from './common/interceptors/data-response/dat
     TagsModule,
     MetaOptionsModule,
     PaginationModule,
+    UploadsModule,
   ],
   controllers: [AppController],
   providers: [

@@ -2,6 +2,8 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { config } from 'aws-sdk';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
@@ -22,7 +24,7 @@ async function bootstrap(): Promise<void> {
   /**
    * Swagger documentation
    */
-  const config = new DocumentBuilder()
+  const swaggerConfig = new DocumentBuilder()
     .setTitle('NestJS Masterclass - Blog App API')
     .setDescription('Use the base API URL as http://localhost:3000')
     .setTermsOfService('http://localhost:3000/terms-of-service')
@@ -34,17 +36,24 @@ async function bootstrap(): Promise<void> {
     .setVersion('1.0')
     .build();
 
-  const document = SwaggerModule.createDocument(app, config);
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
+
+  // AWS SDK
+  const configService = app.get(ConfigService);
+  config.update({
+    credentials: {
+      accessKeyId: configService.get('appConfig.awsAccessKeyId'),
+      secretAccessKey: configService.get('appConfig.awsSecretAccessKey'),
+    },
+    region: configService.get('appConfig.awsRegion'),
+  });
 
   //enable cors
   app.enableCors();
 
   // Disable X-Powered-By header
   app.getHttpAdapter().getInstance().disable('x-powered-by');
-
-  // Global interceptor
-  // app.useGlobalInterceptors(new DataResponseInterceptor());
 
   await app.listen(process.env.PORT ?? 3000);
 }
