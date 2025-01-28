@@ -22,9 +22,7 @@ import jwtConfig from './auth/config/jwt.config';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: !process.env.NODE_ENV
-        ? '.env'
-        : `.env.${process.env.NODE_ENV}`,
+      envFilePath: !process.env.NODE_ENV ? '.env' : `.env`,
       load: [appConfig, databaseConfig],
       validationSchema: environmentValidation,
     }),
@@ -42,6 +40,7 @@ import jwtConfig from './auth/config/jwt.config';
         username: configService.get<string>('database.user'),
         password: configService.get<string>('database.password'),
         database: configService.get<string>('database.name'),
+        logging: true,
       }),
     }),
     ConfigModule.forFeature(jwtConfig),
@@ -61,7 +60,6 @@ import jwtConfig from './auth/config/jwt.config';
       useClass: AuthenticationGuard,
     },
     AccessTokenGuard,
-    
   ],
 })
 export class AppModule {}

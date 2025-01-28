@@ -17,12 +17,14 @@ export class FindOneUserByEmailProvider {
     private readonly usersRepository: Repository<User>,
   ) {}
 
-  public async findOnebyEmail(email: string): Promise<User> {
+  public async findOnebyEmail(email: string) {
     let user: User | undefined = undefined;
+
+    console.log(process.env.DATABASE_PASSWORD);
 
     try {
       user = await this.usersRepository.findOneBy({
-        email,
+        email: email,
       });
     } catch (error) {
       throw new RequestTimeoutException(error, {
