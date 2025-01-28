@@ -19,6 +19,7 @@ import environmentValidation from './config/environment.validation';
 import jwtConfig from './auth/config/jwt.config';
 import { DataResponseInterceptor } from './common/interceptors/data-response/data-response.interceptor';
 import { UploadsModule } from './uploads/uploads.module';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
@@ -45,6 +46,12 @@ import { UploadsModule } from './uploads/uploads.module';
         logging: configService.get<boolean>('database.logging'),
       }),
     }),
+    ThrottlerModule.forRoot([
+      {
+        ttl: 60 * 60 * 1000,
+        limit: 100,
+      },
+    ]),
     ConfigModule.forFeature(jwtConfig),
     JwtModule.registerAsync(jwtConfig.asProvider()),
     UsersModule,
@@ -65,6 +72,10 @@ import { UploadsModule } from './uploads/uploads.module';
     {
       provide: APP_INTERCEPTOR,
       useClass: DataResponseInterceptor,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
     },
     AccessTokenGuard,
   ],

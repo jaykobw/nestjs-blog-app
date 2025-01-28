@@ -4,6 +4,7 @@ import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { config } from 'aws-sdk';
 import { ConfigService } from '@nestjs/config';
+import helmet from 'helmet';
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
@@ -51,6 +52,9 @@ async function bootstrap(): Promise<void> {
 
   //enable cors
   app.enableCors();
+
+  // helmet
+  app.use(helmet());
 
   // Disable X-Powered-By header
   app.getHttpAdapter().getInstance().disable('x-powered-by');
