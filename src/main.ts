@@ -40,6 +40,12 @@ async function bootstrap(): Promise<void> {
   //enable cors
   app.enableCors();
 
+  // Disable X-Powered-By header
+  app.getHttpAdapter().getInstance().disable('x-powered-by');
+
+  // Global interceptor
+  // app.useGlobalInterceptors(new DataResponseInterceptor());
+
   await app.listen(process.env.PORT ?? 3000);
 }
 
