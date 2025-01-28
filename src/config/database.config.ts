@@ -8,4 +8,5 @@ export default registerAs('database', () => ({
   name: process.env.DATABASE_NAME || 'nestjs-blog',
   synchronize: process.env.DATABASE_SYNC === 'true' ? true : false,
   autoLoadEntities: process.env.DATABASE_AUTOLOAD === 'true' ? true : false,
+  logging: process.env.DATABASE_LOGGING === 'true' ? true : false,
 }));

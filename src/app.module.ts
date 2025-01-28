@@ -40,7 +40,7 @@ import jwtConfig from './auth/config/jwt.config';
         username: configService.get<string>('database.user'),
         password: configService.get<string>('database.password'),
         database: configService.get<string>('database.name'),
-        logging: true,
+        logging: configService.get<boolean>('database.logging'),
       }),
     }),
     ConfigModule.forFeature(jwtConfig),

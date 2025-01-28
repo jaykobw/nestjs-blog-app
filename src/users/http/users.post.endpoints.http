@@ -7,30 +7,3 @@ Content-Type: application/json
     "email": "susandoe@example.com",
     "password": "password123"
 }
-
-POST http://localhost:3000/users/create-many
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE0LCJlbWFpbCI6InN1c2FuZG9lQGV4YW1wbGUuY29tIiwiaWF0IjoxNzM3NzA1NjQxLCJleHAiOjE3Mzc3MDkyNDEsImF1ZCI6ImxvY2FsaG9zdDozMDAwIiwiaXNzIjoibG9jYWxob3N0OjMwMDAifQ.1hAoRXWdzi4Z-MY8wWxWjzmrT60mbOBGdHHuc_xDoJ8
-
-{
-    "users": [
-        {
-            "firstName": "Mary",
-            "lastName": "Doe",
-            "email": "marydoe@example.com",
-            "password": "password123"
-        },
-        {
-            "firstName": "Susan",
-            "lastName": "Doe",
-            "email": "susandoe@example.com",
-            "password": "password123"
-        },
-        {
-            "firstName": "Alex",
-            "lastName": "Doe",
-            "email": "alexdoe@example.com",
-            "password": "password123"
-        }
-    ]
-}
