@@ -14,6 +14,9 @@ import { UsersCreateManyProvider } from './users-create-many.provider';
 import { CreateManyUsersDto } from '../dtos/create-many-users.dto';
 import { CreateUserProvider } from './create-user.provider';
 import { FindOneUserByEmailProvider } from './find-one-user-by-email.provider';
+import { FindOneByGoogleIdProvider } from './find-one-by-google-id.provider';
+import { CreateGoogleUserProvider } from './create-google-user.provider';
+import { GoogleUser } from '../interfaces/google-user.interface';
 
 /**
  * Class to connect to users table and perform business operations
@@ -38,6 +41,14 @@ export class UsersService {
      * Inject findOneUserbyEmailProvider
      */
     private readonly findOneUserbyEmailProvider: FindOneUserByEmailProvider,
+    /**
+     * inject findOnebyGoogleId
+     */
+    private readonly findOneByGoogleIdProvider: FindOneByGoogleIdProvider,
+    /**
+     * Inject createGoogleUserProvider
+     */
+    private readonly createGoogleUserProvider: CreateGoogleUserProvider,
   ) {}
 
   public async createUser(createUserDto: CreateUserDto) {
@@ -86,5 +97,13 @@ export class UsersService {
 
   public async findOneByEmail(email: string) {
     return await this.findOneUserbyEmailProvider.findOnebyEmail(email);
+  }
+
+  public async findOneByGoogleId(googleId: string) {
+    return await this.findOneByGoogleIdProvider.findOneByGoogleId(googleId);
+  }
+
+  public async createGoogleUser(googleUser: GoogleUser) {
+    return await this.createGoogleUserProvider.createGoogleUser(googleUser);
   }
 }
