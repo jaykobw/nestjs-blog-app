@@ -20,6 +20,7 @@ import jwtConfig from './auth/config/jwt.config';
 import { DataResponseInterceptor } from './common/interceptors/data-response/data-response.interceptor';
 import { UploadsModule } from './uploads/uploads.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { MailModule } from './mail/mail.module';
 
 @Module({
   imports: [
@@ -61,6 +62,7 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
     MetaOptionsModule,
     PaginationModule,
     UploadsModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [
